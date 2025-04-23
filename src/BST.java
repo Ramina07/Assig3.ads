@@ -1,10 +1,12 @@
+
 import java.util.Iterator;
 import java.util.Stack;
 
 public class BST<K extends Comparable<K>, V> {
     private Node root;
+    private int size = 0;
 
-    private class Node {
+    public class Node {
         private K key;
         private V val;
         private Node left, right;
@@ -12,6 +14,14 @@ public class BST<K extends Comparable<K>, V> {
         public Node(K key, V val) {
             this.key = key;
             this.val = val;
+        }
+
+        public K getKey() {
+            return key;
+        }
+
+        public V getValue() {
+            return val;
         }
     }
 
@@ -39,6 +49,7 @@ public class BST<K extends Comparable<K>, V> {
         } else {
             parent.right = newNode;
         }
+        size++;
     }
 
     public V get(K key) {
@@ -103,6 +114,7 @@ public class BST<K extends Comparable<K>, V> {
             curr.key = successor.key;
             curr.val = successor.val;
         }
+        size--;
         return root;
     }
 
@@ -133,5 +145,8 @@ public class BST<K extends Comparable<K>, V> {
             }
         };
     }
-}
 
+    public int size() {
+        return size;
+    }
+} // End of BST with full iterator and size()
